@@ -3,6 +3,7 @@ package com.example.mobicomplab1
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.toast
 
@@ -31,11 +32,16 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(applicationContext,TimeActivity::class.java))
 
         }
+
         fab_map.setOnClickListener{
             toast("Mobile Computing")
             startActivity(Intent(applicationContext,MapActivity::class.java))
 
         }
 
+        val data = arrayOf("Oulu","Helsinki","Tampere")
+        Log.d("testing",data.toString())
+        val reminderAdapter = ReminderAdapter(applicationContext,data)
+        list.adapter = reminderAdapter
     }
 }
