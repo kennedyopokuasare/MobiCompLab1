@@ -57,7 +57,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
                 return@setOnClickListener
             }
             
-            val reminder = Reminder(uid = null, time = null, location = String.format("%.3f,%3.f",selectedLocation.latitude,selectedLocation.longitude),message = reminderText)
+            val reminder = Reminder(uid = null, time = null, location = String.format("%.3f,%.3f",selectedLocation.latitude,selectedLocation.longitude),message = reminderText)
             
             doAsync {
                 val db = Room.databaseBuilder(applicationContext, AppDatabase::class.java,"reminders").build()
@@ -147,7 +147,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback{
                 }
                 val marker = addMarker(MarkerOptions().position(location).snippet(title).title(city))
                 marker.showInfoWindow()
-                addCircle(CircleOptions().center(location).strokeColor(Color.argb(50,70,70,70)).fillColor(Color.argb(100,150,150,150)))
+                addCircle(CircleOptions().center(location).strokeColor(Color.argb(50,70,70,70)).fillColor(Color.argb(100,150,150,150)).radius(GEOFENCE_RADIUS.toDouble())
                 selectedLocation = location
 
             }
